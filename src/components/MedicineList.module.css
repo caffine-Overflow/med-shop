@@ -1,4 +1,29 @@
 .medicineList {
   display: flex;
+  flex-direction: column;
   gap: 10px;
+}
+
+.medicineItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.medicineItem span {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.medicineItem button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
 }
