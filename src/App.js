@@ -1,17 +1,20 @@
-import { Fragment } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import AddProduct from "./components/AddProduct";
 import MedicineList from "./components/MedicineList";
-function App() {
+import Modal from "./components/Modal";
+
+const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <Fragment>
-      <Header />
-      <main>
-        <AddProduct />
-        <MedicineList />
-      </main>
-    </Fragment>
+    <div>
+      <Header onCartClick={() => setIsModalOpen(true)} />
+      <AddProduct />
+      <MedicineList />
+      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
+    </div>
   );
-}
+};
 
 export default App;

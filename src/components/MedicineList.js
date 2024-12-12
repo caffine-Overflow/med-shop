@@ -1,12 +1,14 @@
-import React from "react";
-
+import { useContext } from "react";
+import MedicineContext from "../store/MedicineContext";
 import classes from "./MedicineList.module.css";
 
-const MedicineList = (medicines) => {
+const MedicineList = () => {
+  const { medicines, addToCart } = useContext(MedicineContext);
+
   return (
     <div className={classes.medicineList}>
       {medicines.map((medicine) => (
-        <div key={medicine.id}>
+        <div key={medicine.id} className={classes.medicineItem}>
           <h3>{medicine.name}</h3>
           <p>{medicine.description}</p>
           <p>Price: ${medicine.price}</p>

@@ -1,8 +1,9 @@
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import MedicineContext from "../store/MedicineContext";
 import classes from "./AddProduct.module.css";
 
 const AddProduct = () => {
+  const { addMedicine } = useContext(MedicineContext);
   const [medicine, setMedicine] = useState({
     name: "",
     description: "",
@@ -10,20 +11,22 @@ const AddProduct = () => {
     quantity: "",
   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setMedicine((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleAdd = (event) => {
-    event.preventDefault();
-    console(medicine);
-
+  const handleAdd = () => {
+    addMedicine({
+      ...medicine,
+      quantity: Number(medicine.quantity),
+      price: Number(medicine.price),
+    });
     setMedicine({ name: "", description: "", price: "", quantity: "" });
   };
 
   return (
-    <form onSubmit={handleAdd} className={classes.addProduct}>
+    <div className={classes.addProduct}>
       <input
         name="name"
         placeholder="Name"
@@ -50,8 +53,8 @@ const AddProduct = () => {
         value={medicine.quantity}
         onChange={handleChange}
       />
-      <button type="submit">Add</button>
-    </form>
+      <button onClick={handleAdd}>Add</button>
+    </div>
   );
 };
 
